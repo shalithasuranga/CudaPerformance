@@ -18,23 +18,27 @@ else
 	touch datafile.txt
 fi	
 
-SIZES=( 64 128 256 )
+SIZES=( 64 128 256 512 )
 
 for i in "${SIZES[@]}"
 do
 	:
-	TIMES=( 1 2 )
+	TIMES=( 1 2 3 4 5 )
 	total="0"
+	echo "N=$i"
 	for j in "${TIMES[@]}"
 	do 
 		:
-		echo "Running for N=$i x $i"
 		c99 Matrix.c -o out
 		resp=$(./out $i)
 		total=$(bc <<< "scale=10; $total+$resp")
-		echo "$resp"
+		echo "# iteration=$j T=$resp"
 	done
-	echo "total = $total"
-	printf "$i $total\n" >> datafile.txt
+	avg=$(bc <<< "scale=10; $total/${#TIMES[@]}")
+	printf "$i $avg\n" >> datafile.txt
+	echo "T avg. = $avg"
 done
+
+echo ""
+echo "Written to file *datafile.txt*"
 

@@ -1,0 +1,14 @@
+\documentclass[12pt,oneside,a4paper]{article}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\title{Matrix Multiplication Runtime}
+\author{Shalitha Suranga}
+\begin{document}
+	\maketitle
+
+	\begin{tikzpicture}
+		\begin{axis}[xlabel=Cost,ylabel=Gain]
+			\addplot[color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile.dat};
+		\end{axis}
+	\end{tikzpicture}
+\end{document}

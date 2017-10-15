@@ -5,20 +5,21 @@
 # Author - Shalitha Suranga
 # -----------------------------------------------
 
+outputfile="output/datafile.dat"
 
 echo ""
-echo "This script will create the *datafile.txt*"
+echo "This script will create the *$outputfile*"
 echo ""
 
-if [ -e datafile.txt ] 
+if [ -e  ] 
 then
-	rm -rf datafile.txt
-	touch datafile.txt
+	rm -rf $outputfile
+	touch $outputfile
 else
-	touch datafile.txt
+	touch $outputfile
 fi	
 
-SIZES=( 64 128 256 512 )
+SIZES=( 32 64 128 256 512 1024)
 
 for i in "${SIZES[@]}"
 do
@@ -29,16 +30,21 @@ do
 	for j in "${TIMES[@]}"
 	do 
 		:
-		c99 Matrix.c -o out
-		resp=$(./out $i)
+		c99 Matrix.c -o output/out
+		resp=$(./output/out $i)
 		total=$(bc <<< "scale=10; $total+$resp")
 		echo "# iteration=$j T=$resp"
 	done
 	avg=$(bc <<< "scale=10; $total/${#TIMES[@]}")
-	printf "$i $avg\n" >> datafile.txt
+	printf "( $i, $avg )\n" >> $outputfile
 	echo "T avg. = $avg"
 done
 
 echo ""
-echo "Written to file *datafile.txt*"
+echo "Written to file *$outputfile*"
+echo ""
+
+./report.sh
+
+
 

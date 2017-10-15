@@ -1,2 +1,4 @@
-out
-datafile.txt
+output/out
+output/Report.aux
+output/Report.log
+output/Report.pdf

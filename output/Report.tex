@@ -7,7 +7,7 @@
 	\maketitle
 
 	\begin{tikzpicture}
-		\begin{axis}[xlabel=Cost,ylabel=Gain]
+		\begin{axis}[xlabel=N,ylabel=T(avg)]
 			\addplot[color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile.dat};
 		\end{axis}
 	\end{tikzpicture}

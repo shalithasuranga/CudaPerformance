@@ -8,7 +8,7 @@
 
 	\begin{tikzpicture}
 		\begin{axis}[xlabel=N,ylabel=T(avg)]
-			\addplot[color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile.dat};
+			\addplot[smooth,color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile.dat};
 		\end{axis}
 	\end{tikzpicture}
 \end{document}

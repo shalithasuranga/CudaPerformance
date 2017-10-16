@@ -11,7 +11,7 @@ echo ""
 echo "This script will create the *$outputfile*"
 echo ""
 
-if [ -e  ] 
+if [ -e $outputfile ] 
 then
 	rm -rf $outputfile
 	touch $outputfile

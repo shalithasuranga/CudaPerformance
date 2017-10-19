@@ -14,8 +14,8 @@ echo "This script will create ${#outputfiles[@]} datafiles"
 echo ""
 	
 # No of interations
-#SIZES=( 32 64 128 256 512 1024)
-SIZES=( 2 4 6 )
+SIZES=( 32 64 128 256 512 1024)
+#SIZES=( 2 4 6 )
 AVG_TIMES=4
 
 GRAPHS=($(seq 1 ${#programs[@]}))
@@ -64,7 +64,7 @@ echo ""
 echo "Processing completed. Now executing report.sh"
 echo ""
 
-#./report.sh
+./report.sh
 
 
 

@@ -6,9 +6,35 @@
 \begin{document}
 	\maketitle
 
+	\newpage
+
+	\section{CPU Program runtime}
+
 	\begin{tikzpicture}
 		\begin{axis}[xlabel=N,ylabel=T(avg)]
-			\addplot[smooth,color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile.dat};
+			\addplot[smooth,color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
+		\end{axis}
+	\end{tikzpicture}
+
+	\newpage
+
+	\section{GPU Global Memory Program(CUDA) runtime}
+
+	\begin{tikzpicture}
+		\begin{axis}[xlabel=N,ylabel=T(avg)]
+			\addplot[smooth,color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
+		\end{axis}
+	\end{tikzpicture}
+
+	\newpage
+
+	\section{GPU Shared Memory Program(CUDA) runtime}
+
+	\begin{tikzpicture}
+		\begin{axis}[xlabel=N,ylabel=T(avg)]
+			\addplot[smooth,color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
 		\end{axis}
 	\end{tikzpicture}
 \end{document}
+
+

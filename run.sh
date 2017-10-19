@@ -5,46 +5,66 @@
 # Author - Shalitha Suranga
 # -----------------------------------------------
 
-outputfile="output/datafile.dat"
+# commands for each program compilation and its output files
+programs=( 'c99 MatrixCPU.c -o output/out' 'c99 MatrixGPUGlobal.c -o output/out' 'c99 MatrixGPUShared.c -o output/out')
+outputfiles=('output/datafile0.dat' 'output/datafile1.dat' 'output/datafile2.dat')
 
 echo ""
-echo "This script will create the *$outputfile*"
+echo "This script will create ${#outputfiles[@]} datafiles"
 echo ""
+	
+# No of interations
+#SIZES=( 32 64 128 256 512 1024)
+GRAPHS=($(seq 1 ${#programs[@]}))
+SIZES=( 2 4 6 )
+AVG_TIMES=4
 
-if [ -e $outputfile ] 
-then
-	rm -rf $outputfile
-	touch $outputfile
-else
-	touch $outputfile
-fi	
-
-SIZES=( 32 64 128 256 512 1024)
-
-for i in "${SIZES[@]}"
+for g in "${GRAPHS[@]}"
 do
 	:
-	TIMES=( 1 2 3 4 5 )
-	total="0"
-	echo "N=$i"
-	for j in "${TIMES[@]}"
-	do 
+	outputfile="${outputfiles[$g-1]}"
+	program="${programs[$g-1]}"
+
+	# Remove if outputfile exists otherwise create
+	if [ -e $outputfile ] 
+	then
+		rm -rf $outputfile
+		touch $outputfile
+	else
+		touch $outputfile
+	fi
+	
+	echo ""
+	echo "---------- generating data for $outputfile ----------"
+	echo ""
+
+	for i in "${SIZES[@]}"
+	do
 		:
-		c99 Matrix.c -o output/out
-		resp=$(./output/out $i)
-		total=$(bc <<< "scale=10; $total+$resp")
-		echo "# iteration=$j T=$resp"
+
+		TIMES=($(seq 0 $AVG_TIMES))
+		total="0"
+		echo "N=$i"
+		for j in "${TIMES[@]}"
+		do 
+			:
+			eval $program
+			resp=$(./output/out $i)
+			total=$(bc <<< "scale=10; $total+$resp")
+			echo "# iteration=$j T=$resp"
+		done
+		avg=$(bc <<< "scale=10; $total/${#TIMES[@]}")
+		printf "( $i, $avg )\n" >> $outputfile
+		echo "T avg. = $avg"
 	done
-	avg=$(bc <<< "scale=10; $total/${#TIMES[@]}")
-	printf "( $i, $avg )\n" >> $outputfile
-	echo "T avg. = $avg"
+	echo "Written data to $outputfile"
 done
 
 echo ""
-echo "Written to file *$outputfile*"
+echo "Processing completed. Now executing report.sh"
 echo ""
 
-./report.sh
+#./report.sh
 
 
 

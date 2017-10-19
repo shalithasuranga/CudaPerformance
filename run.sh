@@ -15,10 +15,10 @@ echo ""
 	
 # No of interations
 #SIZES=( 32 64 128 256 512 1024)
-GRAPHS=($(seq 1 ${#programs[@]}))
 SIZES=( 2 4 6 )
 AVG_TIMES=4
 
+GRAPHS=($(seq 1 ${#programs[@]}))
 for g in "${GRAPHS[@]}"
 do
 	:

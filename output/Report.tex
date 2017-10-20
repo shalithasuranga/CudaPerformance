@@ -8,11 +8,16 @@
 
 	\newpage
 
+	\tableofcontents
+
+	\newpage
+
 	\section{CPU Program runtime}
 
 	\begin{tikzpicture}
-		\begin{axis}[xlabel=N,ylabel=T(avg)]
-			\addplot[smooth,color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
+		\begin{axis}[xlabel=N,ylabel=T(avg),legend style={at={(0.5,-0.1)},anchor=north}]
+			\addplot[color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
+			\addlegendentry{$CPU$}
 		\end{axis}
 	\end{tikzpicture}
 
@@ -21,8 +26,9 @@
 	\section{GPU Global Memory Program(CUDA) runtime}
 
 	\begin{tikzpicture}
-		\begin{axis}[xlabel=N,ylabel=T(avg)]
-			\addplot[smooth,color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
+		\begin{axis}[xlabel=N,ylabel=T(avg),legend style={at={(0.5,-0.1)},anchor=north}]
+			\addplot[color=green,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
+			\addlegendentry{$GPU (Global)$}
 		\end{axis}
 	\end{tikzpicture}
 
@@ -31,10 +37,27 @@
 	\section{GPU Shared Memory Program(CUDA) runtime}
 
 	\begin{tikzpicture}
-		\begin{axis}[xlabel=N,ylabel=T(avg)]
-			\addplot[smooth,color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
+		\begin{axis}[xlabel=N,ylabel=T(avg),legend style={at={(0.5,-0.1)},anchor=north}]
+			\addplot[color=blue,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
+			\addlegendentry{$GPU (Shared)$}
+		\end{axis}
+	\end{tikzpicture}
+
+	\newpage
+
+	\section{Comparison}
+
+	\begin{tikzpicture}
+		\begin{axis}[xlabel=N,ylabel=T(avg),legend style={at={(0.5,-0.1)},anchor=north}]
+			\addplot[color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile0.dat};
+			\addlegendentry{$CPU$}
+			\addplot[color=green,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
+			\addlegendentry{$GPU (Global)$}
+			\addplot[color=blue,mark=x] table[ignore chars={(,)},col sep=comma] {datafile2.dat};
+			\addlegendentry{$GPU (Shared)$}
 		\end{axis}
 	\end{tikzpicture}
 \end{document}
 
 
+\grid

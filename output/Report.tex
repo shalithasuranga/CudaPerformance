@@ -24,8 +24,8 @@
 	\hfill \break
 
 	\begin{tikzpicture}
-		\begin{axis}[xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(1.1,1)},anchor=west}]
-			\addplot[color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
+		\begin{axis}[width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}]
+			\addplot[color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile0.dat};
 			\addlegendentry{$CPU$}
 		\end{axis}
 	\end{tikzpicture}
@@ -39,7 +39,7 @@
 	\hfill \break
 
 	\begin{tikzpicture}
-		\begin{axis}[xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0.5,-0.1)},anchor=north}]
+		\begin{axis}[width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}]
 			\addplot[color=green,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
 			\addlegendentry{$GPU (Global)$}
 		\end{axis}
@@ -54,8 +54,8 @@
 	\hfill \break
 
 	\begin{tikzpicture}
-		\begin{axis}[xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0.5,-0.1)},anchor=north}]
-			\addplot[color=blue,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
+		\begin{axis}[width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}]
+			\addplot[color=blue,mark=x] table[ignore chars={(,)},col sep=comma] {datafile2.dat};
 			\addlegendentry{$GPU (Shared)$}
 		\end{axis}
 	\end{tikzpicture}
@@ -69,7 +69,7 @@
 	\hfill \break
 
 	\begin{tikzpicture}
-		\begin{axis}[xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0.5,-0.1)},anchor=north}]
+		\begin{axis}[width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}]
 			\addplot[color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile0.dat};
 			\addlegendentry{$CPU$}
 			\addplot[color=green,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};

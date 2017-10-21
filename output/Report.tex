@@ -1,9 +1,14 @@
 \documentclass[12pt,oneside,a4paper]{article}
 \usepackage{tikz}
 \usepackage{pgfplots}
-\title{Matrix Multiplication Runtime}
-\author{Shalitha Suranga}
+
+\font\titlefont=cmr12 at 40pt
+
+\title{\titlefont{Matrix Multiplication Runtime}}
+
+\author{M.A.S SURANGA (CST140043)}
 \begin{document}
+
 	\maketitle
 
 	\newpage
@@ -14,8 +19,12 @@
 
 	\section{CPU Program runtime}
 
+	\par
+	This program is executed in normal CPU and $x,y$ values are extracted from the average runtime of each different matrix sizes.
+	\hfill \break
+
 	\begin{tikzpicture}
-		\begin{axis}[xlabel=N,ylabel=T(avg),legend style={at={(0.5,-0.1)},anchor=north}]
+		\begin{axis}[xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(1.1,1)},anchor=west}]
 			\addplot[color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
 			\addlegendentry{$CPU$}
 		\end{axis}
@@ -25,8 +34,12 @@
 
 	\section{GPU Global Memory Program(CUDA) runtime}
 
+	\par
+	This program is executed in Nvdia GPU (Global memory used) and $x,y$ values are extracted from the average runtime of each different matrix sizes.
+	\hfill \break
+
 	\begin{tikzpicture}
-		\begin{axis}[xlabel=N,ylabel=T(avg),legend style={at={(0.5,-0.1)},anchor=north}]
+		\begin{axis}[xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0.5,-0.1)},anchor=north}]
 			\addplot[color=green,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
 			\addlegendentry{$GPU (Global)$}
 		\end{axis}
@@ -36,8 +49,12 @@
 
 	\section{GPU Shared Memory Program(CUDA) runtime}
 
+	\par
+	This program is executed in Nvidia GPU(Shared memory) and $x,y$ values are extracted from the average runtime of each different matrix sizes.
+	\hfill \break
+
 	\begin{tikzpicture}
-		\begin{axis}[xlabel=N,ylabel=T(avg),legend style={at={(0.5,-0.1)},anchor=north}]
+		\begin{axis}[xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0.5,-0.1)},anchor=north}]
 			\addplot[color=blue,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
 			\addlegendentry{$GPU (Shared)$}
 		\end{axis}
@@ -45,10 +62,14 @@
 
 	\newpage
 
-	\section{Comparison}
+	\section{Comparison and Conclusion}
+
+	\par
+	In conclusion The previous plots are compared withing same graph. According the graphs it is proven that GPU Shared memory Program is giving more efficiency than other program types.  
+	\hfill \break
 
 	\begin{tikzpicture}
-		\begin{axis}[xlabel=N,ylabel=T(avg),legend style={at={(0.5,-0.1)},anchor=north}]
+		\begin{axis}[xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0.5,-0.1)},anchor=north}]
 			\addplot[color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile0.dat};
 			\addlegendentry{$CPU$}
 			\addplot[color=green,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
@@ -57,6 +78,17 @@
 			\addlegendentry{$GPU (Shared)$}
 		\end{axis}
 	\end{tikzpicture}
+
+	\newpage
+
+	\section{References}
+
+	\begin{itemize}
+	  \item https://www.tug.org/twg/mactex/tutorials/ltxprimer-1.0.pdf.
+	  \item https://gist.github.com/LeCoupa/122b12050f5fb267e75f
+	  \item https://tex.stackexchange.com/questions
+	\end{itemize}
+
 \end{document}
 
 

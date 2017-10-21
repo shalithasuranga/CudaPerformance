@@ -81,6 +81,21 @@
 
 	\newpage
 
+	\par
+	This graph compares the efficiency between shared memory and global memory of GPU.  
+	\hfill \break
+
+	\begin{tikzpicture}
+		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}]
+			\addplot[color=green,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
+			\addlegendentry{$GPU (Global)$}
+			\addplot[color=blue,mark=x] table[ignore chars={(,)},col sep=comma] {datafile2.dat};
+			\addlegendentry{$GPU (Shared)$}
+		\end{axis}
+	\end{tikzpicture}	
+
+	\newpage
+
 	\section{References}
 
 	\begin{itemize}

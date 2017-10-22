@@ -95,7 +95,6 @@ do
 			:
 			eval $program
 			resp=$(./output/out $i $FIXED_MATRIX)
-			echo "./output/out $i $FIXED_MATRIX"
 			total=$(bc <<< "scale=10; $total+$resp")
 			echo "# iteration=$j T=$resp"
 		done

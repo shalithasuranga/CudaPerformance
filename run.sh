@@ -6,7 +6,7 @@
 # -----------------------------------------------
 
 # commands for each program compilation and its output files
-programs=( 'c99 MatrixCPU.c -o output/out' 'c99 MatrixGPUGlobal.c -o output/out' 'c99 MatrixGPUShared.c -o output/out')
+programs=( 'c99 MatrixCPU.c -o output/out' 'nvcc MatrixGPUGlobal.cu -o output/out -Wno-deprecated-gpu-targets' 'nvcc MatrixGPUShared.cu -o output/out -Wno-deprecated-gpu-targets')
 outputfiles=('output/datafile0.dat' 'output/datafile1.dat' 'output/datafile2.dat')
 
 echo ""
@@ -14,8 +14,8 @@ echo "This script will create ${#outputfiles[@]} datafiles"
 echo ""
 	
 # No of interations
-#SIZES=( 32 64 128 256 512 1024)
-SIZES=( 2 4 6 )
+SIZES=( 32 64 128 256 512 1024)
+#SIZES=( 2 4 6 )
 AVG_TIMES=4
 
 GRAPHS=($(seq 1 ${#programs[@]}))

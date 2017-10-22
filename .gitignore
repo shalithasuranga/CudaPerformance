@@ -1,7 +1,5 @@
 output/out
-output/datafile0.dat
-output/datafile1.dat
-output/datafile2.dat
+output/*.dat
 output/Report.aux
 output/Report.log
 output/Report.pdf

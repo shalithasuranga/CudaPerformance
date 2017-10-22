@@ -92,7 +92,22 @@
 			\addplot[color=blue,mark=x] table[ignore chars={(,)},col sep=comma] {datafile2.dat};
 			\addlegendentry{$GPU (Shared)$}
 		\end{axis}
-	\end{tikzpicture}	
+	\end{tikzpicture}
+
+	\newpage
+
+	\par
+	This graph compares the efficiency between shared memory and global memory of GPU with the threads per block.  
+	\hfill \break
+
+	\begin{tikzpicture}
+		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Threads Per Block,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}]
+			\addplot[color=green,mark=x] table[ignore chars={(,)},col sep=comma] {datafile3.dat};
+			\addlegendentry{$GPU (Global)$}
+			\addplot[color=blue,mark=x] table[ignore chars={(,)},col sep=comma] {datafile4.dat};
+			\addlegendentry{$GPU (Shared)$}
+		\end{axis}
+	\end{tikzpicture}
 
 	\newpage
 

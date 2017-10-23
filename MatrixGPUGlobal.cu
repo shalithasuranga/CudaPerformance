@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#define THREADS_PER_BLOCK 256
+
 
 
 
@@ -21,9 +21,10 @@ __global__ void multi(float *a, float *b, float *c, int width) {
 
 
 int main(int arg0, char **arg1) {
-   cudaThreadSynchronize();
-	
+  cudaThreadSynchronize();
   int width = atoi(arg1[1]);
+  int THREADS_PER_BLOCK = 256;
+  if(arg0 == 3) THREADS_PER_BLOCK = atoi(arg1[2]);
 
 
   int sqrtThreads = sqrt(THREADS_PER_BLOCK);

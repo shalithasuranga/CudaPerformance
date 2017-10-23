@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-#define THREADS_PER_BLOCK 64
 
 
 
@@ -40,7 +39,8 @@ int main(int arg0, char **arg1) {
    cudaThreadSynchronize();
 	
   int width = atoi(arg1[1]);
-
+  int THREADS_PER_BLOCK = 64;
+  if(arg0 == 3) THREADS_PER_BLOCK = atoi(arg1[2]);
 
   int sqrtThreads = sqrt(THREADS_PER_BLOCK);
   int nBlocks = width/sqrtThreads;

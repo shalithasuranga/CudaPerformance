@@ -7,10 +7,10 @@
 
 # ---------- Configuration ---------------------
 CUDA=1
-#SIZES=( 32 64 128 256 512 1024)
-SIZES=( 8 16 32 64 )
-THREADS_PER_BLOCK=( 32 64 128 )
-AVG_TIMES=2
+SIZES=( 32 64 128 256 512 1024)
+#SIZES=( 8 16 32 )
+THREADS_PER_BLOCK=( 8 16 32 64 )
+AVG_TIMES=9
 FIXED_MATRIX=256
 
 # commands for each program compilation and its output files
@@ -44,35 +44,39 @@ GRAPHS=($(seq 1 ${#programs[@]}))
 for g in "${GRAPHS[@]}"
 do
 	:
-	outputfile="${outputfiles[$g-1]}"
-	program="${programs[$g-1]}"
+	if [ $g -lt 4 ]
+	then
 
-	createOrEmpty $outputfile
+		outputfile="${outputfiles[$g-1]}"
+		program="${programs[$g-1]}"
+
+		createOrEmpty $outputfile
 	
-	echo ""
-	echo "---------- generating data for $outputfile ----------"
-	echo ""
+		echo ""
+		echo "---------- generating data for $outputfile ----------"
+		echo ""
 
-	for i in "${SIZES[@]}"
-	do
-		:
-
-		TIMES=($(seq 0 $AVG_TIMES))
-		total="0"
-		echo "N=$i"
-		for j in "${TIMES[@]}"
-		do 
+		for i in "${SIZES[@]}"
+		do
 			:
-			eval $program
-			resp=$(./output/out $i)
-			total=$(bc <<< "scale=10; $total+$resp")
-			echo "# iteration=$j T=$resp"
+
+			TIMES=($(seq 0 $AVG_TIMES))
+			total="0"
+			echo "N=$i"
+			for j in "${TIMES[@]}"
+			do 
+				:
+				eval $program
+				resp=$(./output/out $i)
+				total=$(bc <<< "scale=10; $total+$resp")
+				echo "# iteration=$j T=$resp"
+			done
+			avg=$(bc <<< "scale=10; $total/${#TIMES[@]}")
+			printf "( $i, $avg )\n" >> $outputfile
+			echo "T avg. = $avg"
 		done
-		avg=$(bc <<< "scale=10; $total/${#TIMES[@]}")
-		printf "( $i, $avg )\n" >> $outputfile
-		echo "T avg. = $avg"
-	done
-	echo "Written data to $outputfile"
+		echo "Written data to $outputfile"
+	fi
 done
 
 
@@ -88,7 +92,7 @@ do
 	createOrEmpty $outputfile
 	
 	echo ""
-	echo "---------- generating data for $outputfile ----------"
+	echo "---------- block generating data for $outputfile ----------"
 	echo ""
 
 	for i in "${THREADS_PER_BLOCK[@]}"
@@ -97,12 +101,12 @@ do
 
 		TIMES=($(seq 0 $AVG_TIMES))
 		total="0"
-		echo "N=$i"
+		echo "TPB=$i"
 		for j in "${TIMES[@]}"
 		do 
 			:
 			eval $program
-			resp=$(./output/out $i $FIXED_MATRIX)
+			resp=$(./output/out $FIXED_MATRIX $i)
 			total=$(bc <<< "scale=10; $total+$resp")
 			echo "# iteration=$j T=$resp"
 		done
@@ -118,6 +122,7 @@ echo ""
 echo "Processing completed. Now executing report.sh"
 echo ""
 
+./report.sh
 ./report.sh
 
 

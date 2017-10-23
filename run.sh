@@ -15,9 +15,9 @@ echo ""
 	
 # No of interations
 #SIZES=( 32 64 128 256 512 1024)
-SIZES=( 2 4 6 )
+SIZES=( 8 16 32 64 )
 THREADS_PER_BLOCK=( 32 64 128 )
-AVG_TIMES=4
+AVG_TIMES=2
 FIXED_MATRIX=256
 
 # Remove if outputfile exists otherwise create

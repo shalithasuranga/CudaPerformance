@@ -3,22 +3,30 @@
 
 # ----------------------------------------------
 # Author - Shalitha Suranga
-# -----------------------------------------------
+# ----------------------------------------------
+
+# ---------- Configuration ---------------------
+CUDA=1
+#SIZES=( 32 64 128 256 512 1024)
+SIZES=( 8 16 32 64 )
+THREADS_PER_BLOCK=( 32 64 128 )
+AVG_TIMES=2
+FIXED_MATRIX=256
 
 # commands for each program compilation and its output files
-programs=( 'c99 MatrixCPU.c -o output/out' 'c99 MatrixGPUGlobal.c -o output/out' 'c99 MatrixGPUShared.c -o output/out' 'c99 MatrixGPUGlobal.c -o output/out' 'c99 MatrixGPUShared.c -o output/out')
+if [ $CUDA -eq 0 ] 
+	then
+	programs=( 'c99 MatrixCPU.c -o output/out' 'c99 MatrixGPUGlobal.c -o output/out' 'c99 MatrixGPUShared.c -o output/out' 'c99 MatrixGPUGlobal.c -o output/out' 'c99 MatrixGPUShared.c -o output/out')
+else
+	programs=( 'c99 MatrixCPU.c -o output/out' 'nvcc MatrixGPUGlobal.cu -o output/out -Wno-deprecated-gpu-targets' 'nvcc MatrixGPUShared.cu -o output/out -Wno-deprecated-gpu-targets' 'nvcc MatrixGPUGlobal.cu -o output/out -Wno-deprecated-gpu-targets' 'nvcc MatrixGPUShared.cu -o output/out -Wno-deprecated-gpu-targets')
+fi
+
 outputfiles=('output/datafile0.dat' 'output/datafile1.dat' 'output/datafile2.dat' 'output/datafile3.dat' 'output/datafile4.dat')
 
 echo ""
 echo "This script will create ${#outputfiles[@]} datafiles"
 echo ""
 	
-# No of interations
-#SIZES=( 32 64 128 256 512 1024)
-SIZES=( 8 16 32 64 )
-THREADS_PER_BLOCK=( 32 64 128 )
-AVG_TIMES=2
-FIXED_MATRIX=256
 
 # Remove if outputfile exists otherwise create
 function createOrEmpty {

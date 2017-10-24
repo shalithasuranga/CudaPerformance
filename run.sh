@@ -122,8 +122,8 @@ echo ""
 echo "Processing completed. Now executing report.sh"
 echo ""
 
-./report.sh
-./report.sh
+bash report.sh
+bash report.sh
 
 
 

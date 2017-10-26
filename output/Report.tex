@@ -1,16 +1,23 @@
 \documentclass[12pt,oneside,a4paper]{article}
 \usepackage{tikz}
-\usepackage{pgfplots}
 \usepackage{datetime}
+\usepackage{pgfplots}
 
 \font\titlefont=cmr12 at 40pt
+\font\metafont=cmr12 at 14pt
 
 \title{\titlefont{Matrix Multiplication Runtime}}
-
 \author{M.A.S SURANGA (CST140043)}
+\date{}
+
 \begin{document}
 
 	\maketitle
+
+	\vspace*{5\baselineskip} 
+	\begin{center}
+	\metafont{Generated on \today \ \currenttime}
+	\end{center}
 
 	\newpage
 
@@ -63,10 +70,10 @@
 
 	\newpage
 
-	\section{Comparison and Conclusion}
+	\section{CPU vs GPU Performance Comparison}
 
 	\par
-	In conclusion The previous plots are compared withing same graph. According the graphs it is proven that GPU Shared memory Program is giving more efficiency than other program types.  
+	Previous plots are compared within same graph. According to the plots it is clear that GPU execution is giving very good performance than the CPU.  
 	\hfill \break
 
 	\begin{tikzpicture}
@@ -82,8 +89,9 @@
 
 	\newpage
 
-	\par
-	This graph compares the efficiency between shared memory and global memory of GPU.  
+	\section{Shared Memory vs Global memory of GPU}
+
+	This graph compares the efficiency between shared memory and global memory of the Nvidia GPU. According to the graph the Shared memory program gives good performance comparing to Global memory program. 
 	\hfill \break
 
 	\begin{tikzpicture}
@@ -98,7 +106,10 @@
 	\newpage
 
 	\par
-	This graph compares the efficiency between shared memory and global memory of GPU with the threads per block.  
+	This graph compares the efficiency between shared memory and global memory of GPU with block size(threads per block).
+	\\
+	\\
+	Fixed Matrix size - 256x256 
 	\hfill \break
 
 	\begin{tikzpicture}
@@ -111,6 +122,18 @@
 	\end{tikzpicture}
 
 	\newpage
+	\section{Conclusin}
+
+	\begin{itemize}
+		\item Using first graphs it is clear that GPU execution of matrix multiplication program is giving very good performance. Thus CPU execution gives a plot similar to cubic curve since we used naive $O(n^3)$ algorithm here. Further CPU algorithm can be optimized using several algorithms(Eg :- Solvay Strassen Algorithm).
+
+		\item Shared memory decreases the execution time of the program because shared memory is onchip memory rather than global memory. 
+
+		\item In conclusion Shared memory approach is the most efficient method for matrix multiplication program among all program types.
+	\end{itemize}
+
+	\newpage
+
 
 	\section{References}
 
@@ -123,7 +146,3 @@
 \end{document}
 
 
-\grid
-\grid
-\grid
-\grid

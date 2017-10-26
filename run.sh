@@ -10,7 +10,7 @@ CUDA=0
 #SIZES=( 32 64 128 256 512 1024)
 SIZES=( 8 16 32 )
 THREADS_PER_BLOCK=( 8 16 32 64 )
-AVG_TIMES=9
+AVG_TIMES=0
 FIXED_MATRIX=256
 
 # commands for each program compilation and its output files

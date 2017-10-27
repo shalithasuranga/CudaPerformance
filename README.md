@@ -1,4 +1,4 @@
-# Cuda-Exercise-2
+# Cuda Performance
 
 ## How to generate PDF Report
 

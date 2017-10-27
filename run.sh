@@ -7,13 +7,12 @@
 
 # ---------- Configuration ---------------------
 CUDA=0
-#SIZES=( 32 64 128 256 512 1024)
-SIZES=( 8 16 32 )
+SIZES=( 32 64 128 256 512 1024)
 THREADS_PER_BLOCK=( 16 64 256 1024 )
 AVG_TIMES=10
-FIXED_MATRIX=32
+FIXED_MATRIX=1024
 FIXED_BLOCK_SIZE=256
-MATRIX_FOR_TABLE=32
+MATRIX_FOR_TABLE=1024
 
 let AVG_TIMES=AVG_TIMES-1
 # commands for each program compilation and its output files

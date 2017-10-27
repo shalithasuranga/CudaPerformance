@@ -14,6 +14,7 @@ FIXED_MATRIX=1024
 FIXED_BLOCK_SIZE=256
 MATRIX_FOR_TABLE=1024
 
+AVG_TIMES_O=$AVG_TIMES
 let AVG_TIMES=AVG_TIMES-1
 # commands for each program compilation and its output files
 if [ $CUDA -eq 0 ] 
@@ -132,7 +133,7 @@ echo ""
 
 printf "%s " "${SIZES[@]}" > output/meta_sizes.dat
 printf "%s " "${THREADS_PER_BLOCK[@]}" > output/meta_block.dat
-printf "%s " "${AVG_TIMES}" > output/meta_avg.dat
+printf "%s " "${AVG_TIMES_O}" > output/meta_avg.dat
 printf "%s " "${FIXED_MATRIX}" > output/meta_fixedmatrix.dat
 printf "%s " "${FIXED_BLOCK_SIZE}" > output/meta_fixedblock.dat
 printf "%s " "${MATRIX_FOR_TABLE}" > output/meta_tablematrixsize.dat

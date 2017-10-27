@@ -7,6 +7,7 @@
 \usepackage{tocloft}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \usepackage{geometry}
+\pgfplotsset{compat=1.11}
 
  \geometry{
  a4paper,
@@ -77,7 +78,7 @@
 	\hfill \break
 
 	\begin{tikzpicture}
-		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}]
+		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}, ylabel near ticks]
 			\addplot[color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile0.dat};
 			\addlegendentry{$CPU$}
 		\end{axis}
@@ -92,7 +93,7 @@
 	\hfill \break
 
 	\begin{tikzpicture}
-		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}]
+		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}, ylabel near ticks]
 			\addplot[color=green,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
 			\addlegendentry{$GPU (Global)$}
 		\end{axis}
@@ -107,7 +108,7 @@
 	\hfill \break
 
 	\begin{tikzpicture}
-		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}]
+		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}, ylabel near ticks]
 			\addplot[color=blue,mark=x] table[ignore chars={(,)},col sep=comma] {datafile2.dat};
 			\addlegendentry{$GPU (Shared)$}
 		\end{axis}
@@ -122,7 +123,7 @@
 	\hfill \break
 
 	\begin{tikzpicture}
-		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}]
+		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}, ylabel near ticks]
 			\addplot[color=red,mark=x] table[ignore chars={(,)},col sep=comma] {datafile0.dat};
 			\addlegendentry{$CPU$}
 			\addplot[color=green,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
@@ -140,7 +141,7 @@
 	\hfill \break
 
 	\begin{tikzpicture}
-		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}]
+		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Matrix size,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south},ylabel near ticks]
 			\addplot[color=green,mark=x] table[ignore chars={(,)},col sep=comma] {datafile1.dat};
 			\addlegendentry{$GPU (Global)$}
 			\addplot[color=blue,mark=x] table[ignore chars={(,)},col sep=comma] {datafile2.dat};
@@ -158,7 +159,7 @@
 	\hfill \break
 
 	\begin{tikzpicture}
-		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Threads Per Block,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}]
+		\begin{axis}[grid=major, grid style={black!20}, width=\linewidth, xlabel=Threads Per Block,ylabel=Runtime(secs.),legend style={at={(0,-0.3)},anchor=south}, ylabel near ticks]
 			\addplot[color=green,mark=x] table[ignore chars={(,)},col sep=comma] {datafile3.dat};
 			\addlegendentry{$GPU (Global)$}
 			\addplot[color=blue,mark=x] table[ignore chars={(,)},col sep=comma] {datafile4.dat};
@@ -208,3 +209,4 @@
 
 \end{document}
 
+\grid

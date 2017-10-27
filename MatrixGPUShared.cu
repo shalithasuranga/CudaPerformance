@@ -4,8 +4,8 @@
 
 
 
-const int TILE_WIDTH = 8;
-__global__ void multi(float *a, float *b, float *c, int width) {
+
+template <int TILE_WIDTH> __global__ void multi(float *a, float *b, float *c, int width) {
   __shared__ float s_a[TILE_WIDTH][TILE_WIDTH];
   __shared__ float s_b[TILE_WIDTH][TILE_WIDTH];
 
@@ -99,8 +99,13 @@ int main(int arg0, char **arg1) {
   cudaEventCreate(&stop);
   cudaEventRecord(start, 0);
 
+  if(sqrtThreads == 2) multi<2><<<grid, block>>>(a_d, b_d, c_d, width);
+  if(sqrtThreads == 4) multi<4><<<grid, block>>>(a_d, b_d, c_d, width);
+  if(sqrtThreads == 8) multi<8><<<grid, block>>>(a_d, b_d, c_d, width);
+  if(sqrtThreads == 16) multi<16><<<grid, block>>>(a_d, b_d, c_d, width);
+  if(sqrtThreads == 32) multi<32><<<grid, block>>>(a_d, b_d, c_d, width);
+ 
 
-  multi<<<grid, block>>>(a_d, b_d, c_d, width);
   cudaDeviceSynchronize();
 
   cudaEventRecord(stop, 0);

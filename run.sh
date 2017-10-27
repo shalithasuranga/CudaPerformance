@@ -6,13 +6,16 @@
 # ----------------------------------------------
 
 # ---------- Configuration ---------------------
-CUDA=1
+CUDA=0
 #SIZES=( 32 64 128 256 512 1024)
 SIZES=( 8 16 32 )
-THREADS_PER_BLOCK=( 4 16 64 256 1024 )
-AVG_TIMES=5
-FIXED_MATRIX=1024
+THREADS_PER_BLOCK=( 16 64 256 1024 )
+AVG_TIMES=10
+FIXED_MATRIX=32
+FIXED_BLOCK_SIZE=256
+MATRIX_FOR_TABLE=32
 
+let AVG_TIMES=AVG_TIMES-1
 # commands for each program compilation and its output files
 if [ $CUDA -eq 0 ] 
 	then
@@ -53,7 +56,7 @@ do
 		createOrEmpty $outputfile
 	
 		echo ""
-		echo "---------- generating data for $outputfile ----------"
+		echo "---------- [STAGE 1] generating data for $outputfile ----------"
 		echo ""
 
 		for i in "${SIZES[@]}"
@@ -67,13 +70,17 @@ do
 			do 
 				:
 				eval $program
-				resp=$(./output/out $i)
+				resp=$(./output/out $i $FIXED_BLOCK_SIZE)
 				total=$(bc <<< "scale=10; $total+$resp")
 				echo "# iteration=$j T=$resp"
 			done
 			avg=$(bc <<< "scale=10; $total/${#TIMES[@]}")
 			printf "( $i, $avg )\n" >> $outputfile
 			echo "T avg. = $avg"
+			if [ $i -eq $MATRIX_FOR_TABLE ]
+				then
+				printf "%s" $avg > output/meta_tablematrix_$g.dat 
+			fi
 		done
 		echo "Written data to $outputfile"
 	fi
@@ -92,7 +99,7 @@ do
 	createOrEmpty $outputfile
 	
 	echo ""
-	echo "---------- block generating data for $outputfile ----------"
+	echo "---------- [STAGE 2] generating data for $outputfile ----------"
 	echo ""
 
 	for i in "${THREADS_PER_BLOCK[@]}"
@@ -121,6 +128,15 @@ done
 echo ""
 echo "Processing completed. Now executing report.sh"
 echo ""
+
+# Save metadata
+
+printf "%s " "${SIZES[@]}" > output/meta_sizes.dat
+printf "%s " "${THREADS_PER_BLOCK[@]}" > output/meta_block.dat
+printf "%s " "${AVG_TIMES}" > output/meta_avg.dat
+printf "%s " "${FIXED_MATRIX}" > output/meta_fixedmatrix.dat
+printf "%s " "${FIXED_BLOCK_SIZE}" > output/meta_fixedblock.dat
+printf "%s " "${MATRIX_FOR_TABLE}" > output/meta_tablematrixsize.dat
 
 bash report.sh
 bash report.sh

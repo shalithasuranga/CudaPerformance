@@ -1,9 +1,16 @@
-\documentclass[12pt,oneside,a4paper]{article}
+\documentclass[12pt]{article}
 \usepackage{tikz}
 \usepackage{datetime}
 \usepackage{pgfplots}
 \usepackage{array}
 \usepackage{tabu}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
 
 \font\titlefont=cmr12 at 40pt
 \font\metafont=cmr12 at 14pt
@@ -26,8 +33,21 @@
 	\tableofcontents
 
 	\newpage
-	\section{Test Cases}
+	\section{Introduction}
 	\hfill \break
+
+	\textbf{Report Content}
+
+	\hfill \break
+
+	This report compares the performance of matrix multiplication on CPU and Nvidia GPU. CPU program uses the naive approach for computation and GPU programs contain two parallel codes that uses global memory and shared memory.  
+
+	\hfill \break
+
+	\textbf{Testcases details}
+
+	\hfill \break
+
 
 	\begin{tabu} to 1 \textwidth { | X[l] | X[r] | }
 		 \hline
@@ -35,7 +55,7 @@
 		 \hline
 		 Block Size(Threads Per Block) & \input{meta_block.dat}  \\
 		 \hline
-		 Average Executions & \input{meta_avg.dat}  \\
+		 No. of iterations & \input{meta_avg.dat}  \\
 		 \hline
 		 Fixed Matrix Size & \input{meta_fixedmatrix.dat}  \\
 		 \hline
@@ -130,7 +150,7 @@
 	This graph compares the efficiency between shared memory and global memory of GPU with block size(threads per block).
 	\\
 	\\
-	Fixed Matrix size - 256x256 
+	Fixed Matrix size - \input{meta_fixedmatrix.dat}x\input{meta_fixedmatrix.dat} 
 	\hfill \break
 
 	\begin{tikzpicture}
@@ -156,10 +176,10 @@
 	\end{itemize}
 
 	\hfill \break
-	Following table compares the efficiency of matrix muliplication for \input{meta_tablematrixsize.dat}
+	Following table compares the efficiency of matrix muliplication for \\ \input{meta_tablematrixsize.dat}x\input{meta_tablematrixsize.dat} matrix.
 	\hfill \break
 
-	\begin{tabu} to 1 \textwidth { | X[l] | X[r] }
+	\begin{tabu} to 1 \textwidth { | X[l] | X[r] | }
 		 \hline
 		 Approach & Time(secs.)  \\
 		 \hline

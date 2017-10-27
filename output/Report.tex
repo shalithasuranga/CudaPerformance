@@ -2,6 +2,8 @@
 \usepackage{tikz}
 \usepackage{datetime}
 \usepackage{pgfplots}
+\usepackage{array}
+\usepackage{tabu}
 
 \font\titlefont=cmr12 at 40pt
 \font\metafont=cmr12 at 14pt
@@ -22,6 +24,25 @@
 	\newpage
 
 	\tableofcontents
+
+	\newpage
+	\section{Test Cases}
+	\hfill \break
+
+	\begin{tabu} to 1 \textwidth { | X[l] | X[r] | }
+		 \hline
+		 Matrix Sizes & \input{meta_sizes.dat}  \\
+		 \hline
+		 Block Size(Threads Per Block) & \input{meta_block.dat}  \\
+		 \hline
+		 Average Executions & \input{meta_avg.dat}  \\
+		 \hline
+		 Fixed Matrix Size & \input{meta_fixedmatrix.dat}  \\
+		 \hline
+		 Fixed Block Size & \input{meta_fixedblock.dat}  \\ 
+		 \hline
+	\end{tabu}	
+	
 
 	\newpage
 
@@ -130,7 +151,25 @@
 		\item Shared memory decreases the execution time of the program because shared memory is onchip memory rather than global memory. 
 
 		\item In conclusion Shared memory approach is the most efficient method for matrix multiplication program among all program types.
+
+		\item Thus If the Block size is being increased in shared memory there is apparent performance gain.
 	\end{itemize}
+
+	\hfill \break
+	Following table compares the efficiency of matrix muliplication for \input{meta_tablematrixsize.dat}
+	\hfill \break
+
+	\begin{tabu} to 1 \textwidth { | X[l] | X[r] }
+		 \hline
+		 Approach & Time(secs.)  \\
+		 \hline
+		 CPU & \input{meta_tablematrix_1.dat}  \\
+		 \hline
+		 GPU (Global Memory) & \input{meta_tablematrix_2.dat}  \\
+		 \hline
+		 GPU (Shared Memory) & \input{meta_tablematrix_3.dat}  \\
+		 \hline
+	\end{tabu}		
 
 	\newpage
 

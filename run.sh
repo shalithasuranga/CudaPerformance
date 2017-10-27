@@ -6,12 +6,12 @@
 # ----------------------------------------------
 
 # ---------- Configuration ---------------------
-CUDA=0
+CUDA=1
 #SIZES=( 32 64 128 256 512 1024)
 SIZES=( 8 16 32 )
-THREADS_PER_BLOCK=( 8 16 32 64 )
-AVG_TIMES=0
-FIXED_MATRIX=256
+THREADS_PER_BLOCK=( 4 16 64 256 1024 )
+AVG_TIMES=5
+FIXED_MATRIX=1024
 
 # commands for each program compilation and its output files
 if [ $CUDA -eq 0 ] 
